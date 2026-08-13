@@ -28,6 +28,7 @@ Gladius.AscensionClasses = {
 		name = "Barbarian", dbId = 12,
 		color = { r = 0.78, g = 0.61, b = 0.43 },
 		icon = "Interface\\Icons\\Ability_Warrior_Rampage",
+		iconSpellId = 805811,
 		specs = { "Ancestry", "Brutality", "Headhunting" },
 	},
 	-- id 13
@@ -35,6 +36,7 @@ Gladius.AscensionClasses = {
 		name = "Witch Doctor", dbId = 13,
 		color = { r = 0.45, g = 0.75, b = 0.35 },
 		icon = "Interface\\Icons\\Spell_Nature_Polymorph",
+		iconSpellId = 504409,
 		specs = { "Brewing", "Voodoo", "Shadowhunting" },
 	},
 	-- id 14
@@ -42,6 +44,7 @@ Gladius.AscensionClasses = {
 		name = "Felsworn", dbId = 14,
 		color = { r = 0.55, g = 0.80, b = 0.25 },
 		icon = "Interface\\Icons\\Ability_Warlock_DemonicEmpowerment",
+		iconSpellId = 800204,
 		specs = { "Slaying", "Infernal", "Tyrant" },
 	},
 	-- id 15
@@ -49,6 +52,7 @@ Gladius.AscensionClasses = {
 		name = "Witch Hunter", dbId = 15,
 		color = { r = 0.70, g = 0.35, b = 0.15 },
 		icon = "Interface\\Icons\\Ability_Hunter_MarkedForDeath",
+		iconSpellId = 500058, -- Witch Hunter (Inquisition) — client-valid texture
 		specs = { "Boltslinger", "Darkness", "Black Knight" },
 	},
 	-- id 16
@@ -56,6 +60,7 @@ Gladius.AscensionClasses = {
 		name = "Stormbringer", dbId = 16,
 		color = { r = 0.35, g = 0.55, b = 0.95 },
 		icon = "Interface\\Icons\\Spell_Nature_Lightning",
+		iconSpellId = 804597,
 		specs = { "Lightning", "Thunder", "Winds" },
 	},
 	-- id 17
@@ -63,6 +68,7 @@ Gladius.AscensionClasses = {
 		name = "Knight of Xoroth", dbId = 17,
 		color = { r = 0.85, g = 0.25, b = 0.10 },
 		icon = "Interface\\Icons\\Spell_Fire_FelImmolation",
+		iconSpellId = 803185,
 		specs = { "War", "Hellfire", "Defiance" },
 	},
 	-- id 18
@@ -70,6 +76,7 @@ Gladius.AscensionClasses = {
 		name = "Guardian", dbId = 18,
 		color = { r = 0.80, g = 0.70, b = 0.45 },
 		icon = "Interface\\Icons\\Ability_Warrior_DefensiveStance",
+		iconSpellId = 802309,
 		specs = { "Gladiator", "Vanguard", "Inspiration" },
 	},
 	-- id 19
@@ -77,6 +84,7 @@ Gladius.AscensionClasses = {
 		name = "Templar", dbId = 19,
 		color = { r = 0.95, g = 0.90, b = 0.60 },
 		icon = "Interface\\Icons\\Spell_Holy_SealOfMight",
+		iconSpellId = 504120,
 		specs = { "Crusader", "Martial", "Discipline" },
 	},
 	-- id 20
@@ -84,6 +92,7 @@ Gladius.AscensionClasses = {
 		name = "Bloodmage", dbId = 20,
 		color = { r = 0.75, g = 0.10, b = 0.20 },
 		icon = "Interface\\Icons\\Spell_Shadow_LifeDrain",
+		iconSpellId = 804198,
 		specs = { "Fleshweaver", "Sanguine", "Accursed", "Eternal" },
 	},
 	-- id 21
@@ -91,6 +100,7 @@ Gladius.AscensionClasses = {
 		name = "Ranger", dbId = 21,
 		color = { r = 0.55, g = 0.70, b = 0.35 },
 		icon = "Interface\\Icons\\Ability_Hunter_RunningShot",
+		iconSpellId = 801435,
 		specs = { "Archery", "Brigand", "Farstrider" },
 	},
 	-- id 22
@@ -98,6 +108,7 @@ Gladius.AscensionClasses = {
 		name = "Chronomancer", dbId = 22,
 		color = { r = 0.40, g = 0.70, b = 0.90 },
 		icon = "Interface\\Icons\\Spell_Arcane_PortalDarnassus",
+		iconSpellId = 801295,
 		specs = { "Duality", "Artificer", "Displacement" },
 	},
 	-- id 23
@@ -105,6 +116,7 @@ Gladius.AscensionClasses = {
 		name = "Necromancer", dbId = 23,
 		color = { r = 0.35, g = 0.70, b = 0.45 },
 		icon = "Interface\\Icons\\Spell_Shadow_AnimateDead",
+		iconSpellId = 501959,
 		specs = { "Animation", "Rime", "Death" },
 	},
 	-- id 24
@@ -112,6 +124,7 @@ Gladius.AscensionClasses = {
 		name = "Pyromancer", dbId = 24,
 		color = { r = 0.95, g = 0.45, b = 0.10 },
 		icon = "Interface\\Icons\\Spell_Fire_Fireball02",
+		iconSpellId = 801908,
 		specs = { "Incineration", "Draconic", "Flameweaving" },
 	},
 	-- id 25
@@ -119,6 +132,7 @@ Gladius.AscensionClasses = {
 		name = "Cultist", dbId = 25,
 		color = { r = 0.55, g = 0.25, b = 0.75 },
 		icon = "Interface\\Icons\\Spell_Shadow_Shadowfiend",
+		iconSpellId = 800416,
 		specs = { "Godblade", "Corruption", "Influence", "Dreadnought" },
 	},
 	-- id 26
@@ -140,6 +154,7 @@ Gladius.AscensionClasses = {
 		name = "Tinker", dbId = 28,
 		color = { r = 0.80, g = 0.65, b = 0.20 },
 		icon = "Interface\\Icons\\INV_Gizmo_02",
+		iconSpellId = 806157,
 		specs = { "Demolition", "Mechanics", "Invention" },
 	},
 	-- id 29
@@ -147,6 +162,7 @@ Gladius.AscensionClasses = {
 		name = "Venomancer", dbId = 29,
 		color = { r = 0.40, g = 0.75, b = 0.30 },
 		icon = "Interface\\Icons\\Ability_PoisonSting",
+		iconSpellId = 800876,
 		specs = { "Rot", "Vizier", "Stalking", "Fortitude" },
 	},
 	-- id 30
@@ -161,6 +177,7 @@ Gladius.AscensionClasses = {
 		name = "Primalist", dbId = 31,
 		color = { r = 0.30, g = 0.80, b = 0.40 },
 		icon = "Interface\\Icons\\Ability_Druid_NaturalPerfection",
+		iconSpellId = 800145,
 		specs = { "Geomancy", "Mountain King", "Wildwalker", "Life" },
 	},
 	-- id 32
@@ -168,6 +185,7 @@ Gladius.AscensionClasses = {
 		name = "Runemaster", dbId = 32,
 		color = { r = 0.50, g = 0.55, b = 0.85 },
 		icon = "Interface\\Icons\\Spell_Deathknight_DarkConviction",
+		iconSpellId = 802231,
 		specs = { "Spellslinger", "Riftblade", "Conjuration" },
 	},
 }
@@ -180,6 +198,13 @@ Gladius.AscensionClassAliases = {
 	["WITCH_HUNTER"] = "WITCHHUNTER",
 	["BLOOD_MAGE"] = "BLOODMAGE",
 	["STAR_CALLER"] = "STARCALLER",
+	-- Extra Ascension / spacing variants
+	["WITCH HUNTER"] = "WITCHHUNTER",
+	["WITCH DOCTOR"] = "WITCHDOCTOR",
+	["SUN CLERIC"] = "SUNCLERIC",
+	["KNIGHT OF XOROTH"] = "KNIGHTOFXOROTH",
+	["BLOOD MAGE"] = "BLOODMAGE",
+	["STAR CALLER"] = "STARCALLER",
 }
 
 Gladius.AscensionFallbackClass = {
@@ -241,6 +266,19 @@ Gladius.AscensionAuras = {
 	[704640] = 3, -- Binding Torment (Bloodmage)
 	[705897] = 3, -- Trapped Spirits (Witch Doctor)
 	[804728] = 3, -- Powerful Grip (Barbarian)
+
+	-- ===== Witch Hunter (class 15) =====
+	[802138] = 3, -- Gaze of the Black Knight — Stunned
+	[805770] = 2, -- Witching Shroud
+	[520206] = 3, -- Heartstop Bolt
+	[520207] = 3,
+	[520208] = 3,
+	[520209] = 3,
+	[520210] = 3,
+	[802269] = 3, -- Burrow Bolt
+	[804051] = 3, -- Witching Idol
+	[501380] = 1, -- Brand of the Unworthy
+	[800161] = 1, -- Crippling Bolt
 }
 
 ---------------------------------------------------------------------------
@@ -299,6 +337,17 @@ Gladius.AscensionDR = {
 	[800204] = "CHARGE",            -- Felhoof Charge
 	[804691] = "CHARGE",            -- Cavalry Charge
 	[800144] = "CHARGE",            -- Spirit Charge
+
+	-- Witch Hunter
+	[802138] = "CONTROLLEDSTUN",    -- Gaze of the Black Knight
+	[520206] = "CONTROLLEDSTUN",    -- Heartstop Bolt
+	[520207] = "CONTROLLEDSTUN",
+	[520208] = "CONTROLLEDSTUN",
+	[520209] = "CONTROLLEDSTUN",
+	[520210] = "CONTROLLEDSTUN",
+	[802269] = "CONTROLLEDROOT",    -- Burrow Bolt (treat as root/control)
+	[804051] = "DISORIENT",         -- Witching Idol
+	[805770] = "CONTROLLEDSTUN",    -- Witching Shroud (stun component)
 }
 
 Gladius.AscensionDRCategories = {
@@ -334,7 +383,19 @@ Gladius.AscensionCooldowns = {
 	["FELSWORN"] = {
 		[800204] = 20,  -- Felhoof Charge
 	},
-	["WITCHHUNTER"] = {},
+	["WITCHHUNTER"] = {
+		[802138] = 180, -- Gaze of the Black Knight
+		[520206] = 6,   -- Heartstop Bolt
+		[802269] = 40,  -- Burrow Bolt
+		[501380] = 60,  -- Brand of the Unworthy
+		[805770] = 90,  -- Witching Shroud
+		[804051] = 45,  -- Witching Idol (estimate)
+		[800768] = 60,  -- Unleash The Hounds
+		[802273] = 20,  -- Houndmaster's Call
+		[801343] = 10,  -- Houndmaster's Whistle
+		[560048] = 6,   -- Shadow Shot
+		[800161] = 15,  -- Crippling Bolt (estimate)
+	},
 	["STORMBRINGER"] = {
 		[804597] = 20,  -- Binding Shock
 	},
@@ -421,33 +482,67 @@ Gladius.AscensionSpecSpells = {
 	[801295] = "Displacement",
 	[804198] = "Accursed",
 	[504120] = "Martial",
+	[802138] = "Black Knight", -- Gaze of the Black Knight
+	[800768] = "Darkness",     -- Unleash The Hounds
+	[520206] = "Boltslinger",  -- Heartstop Bolt
 }
 
 ---------------------------------------------------------------------------
 -- Helpers
 ---------------------------------------------------------------------------
 
+local VANILLA_CLASS_TOKENS = {
+	WARRIOR = true, PALADIN = true, HUNTER = true, ROGUE = true, PRIEST = true,
+	DEATHKNIGHT = true, SHAMAN = true, MAGE = true, WARLOCK = true, DRUID = true,
+}
+
 local function SafeSpellName(spellId)
 	if not spellId then return nil end
 	return GetSpellInfo(spellId)
 end
 
+function Gladius:NormalizeIconPath(texture)
+	if not texture or texture == "" then
+		return QUESTION_ICON
+	end
+	if type(texture) == "number" then
+		return texture
+	end
+	-- Ascension sometimes returns bare icon names without a path.
+	if not string.find(texture, "\\") and not string.find(texture, "/") then
+		return "Interface\\Icons\\" .. texture
+	end
+	return texture
+end
+
 local function SafeSpellTexture(spellId)
 	if not spellId then return QUESTION_ICON end
 	local _, _, texture = GetSpellInfo(spellId)
-	return texture or QUESTION_ICON
+	return Gladius:NormalizeIconPath(texture)
 end
 
-local function ResolveClassToken(class)
+function Gladius:ResolveClassToken(class)
 	if not class then return nil end
-	if Gladius.AscensionClassAliases and Gladius.AscensionClassAliases[class] then
-		return Gladius.AscensionClassAliases[class]
+	local upper = string.upper(class)
+	if self.AscensionClassAliases and self.AscensionClassAliases[class] then
+		return self.AscensionClassAliases[class]
+	end
+	if self.AscensionClassAliases and self.AscensionClassAliases[upper] then
+		return self.AscensionClassAliases[upper]
+	end
+	-- Collapse spaces/underscores: "Witch Hunter" / "WITCH_HUNTER"
+	local compact = string.gsub(upper, "[%s_]", "")
+	if self.AscensionClasses and self.AscensionClasses[compact] then
+		return compact
+	end
+	if self.AscensionClasses and self.AscensionClasses[upper] then
+		return upper
 	end
 	return class
 end
 
 function Gladius:GetClassColor(class)
-	class = ResolveClassToken(class)
+	class = self:ResolveClassToken(class)
 	if not class then
 		local f = self.AscensionFallbackClass.color
 		return f.r, f.g, f.b
@@ -466,15 +561,42 @@ end
 
 function Gladius:SetClassIconTexture(texture, class)
 	if not texture then return end
-	class = ResolveClassToken(class)
-	if class and CLASS_BUTTONS and CLASS_BUTTONS[class] then
+	class = self:ResolveClassToken(class)
+
+	-- Ascension injects broken CLASS_BUTTONS coords for custom classes → black
+	-- squares. Always prefer Ascension class icons for CoA tokens.
+	local custom = class and self.AscensionClasses and self.AscensionClasses[class]
+	if custom then
+		local path
+		if custom.iconSpellId then
+			local _, _, tex = GetSpellInfo(custom.iconSpellId)
+			if tex then path = self:NormalizeIconPath(tex) end
+		end
+		-- Fallback: first known cooldown/aura spell texture for this class
+		if (not path or path == QUESTION_ICON) and self.cooldownSpells and self.cooldownSpells[class] then
+			for spellId, _ in pairs(self.cooldownSpells[class]) do
+				local _, _, tex = GetSpellInfo(spellId)
+				if tex then
+					path = self:NormalizeIconPath(tex)
+					break
+				end
+			end
+		end
+		if not path or path == QUESTION_ICON then
+			path = self:NormalizeIconPath(custom.icon)
+		end
+		texture:SetTexture(path or QUESTION_ICON)
+		texture:SetTexCoord(0, 1, 0, 1)
+		return
+	end
+
+	if class and VANILLA_CLASS_TOKENS[class] and CLASS_BUTTONS and CLASS_BUTTONS[class] then
 		texture:SetTexture("Interface\\Glues\\CharacterCreate\\UI-CharacterCreate-Classes")
 		texture:SetTexCoord(unpack(CLASS_BUTTONS[class]))
 		return
 	end
-	local custom = class and self.AscensionClasses and self.AscensionClasses[class]
-	local path = (custom and custom.icon) or self.AscensionFallbackClass.icon or QUESTION_ICON
-	texture:SetTexture(path)
+
+	texture:SetTexture(QUESTION_ICON)
 	texture:SetTexCoord(0, 1, 0, 1)
 end
 
@@ -507,6 +629,9 @@ function Gladius:MergeAscensionData()
 	self:InjectAscensionClassColors()
 
 	self.cooldownSpells = self.cooldownSpells or {}
+	self.cooldownSpellIds = self.cooldownSpellIds or {}
+	self.spellTextures = self.spellTextures or {}
+
 	if self.AscensionClasses then
 		for token, _ in pairs(self.AscensionClasses) do
 			if not self.cooldownSpells[token] then
@@ -525,7 +650,10 @@ function Gladius:MergeAscensionData()
 				local spellName, _, texture = GetSpellInfo(spellId)
 				if spellName then
 					self.cooldownSpellIds[spellName] = spellId
-					self.spellTextures[spellId] = texture
+					self.spellTextures[spellId] = self:NormalizeIconPath(texture)
+				else
+					-- Still keep a fallback icon so the CD slot is not black.
+					self.spellTextures[spellId] = QUESTION_ICON
 				end
 			end
 		end
@@ -551,10 +679,13 @@ function Gladius:MergeAscensionData()
 		for spellId, spellType in pairs(self.AscensionDR) do
 			self.drSpells[spellId] = spellType
 			local spellName, _, texture = GetSpellInfo(spellId)
+			local path = self:NormalizeIconPath(texture)
 			if spellName then
 				self.drSpellIds[spellName] = spellType
-				self.drSpellTextures[spellName] = texture
+				self.drSpellTextures[spellName] = path
 			end
+			-- ID-keyed texture for combat-log fallback paths
+			self.drSpellTextures[tostring(spellId)] = path
 		end
 	end
 
@@ -617,7 +748,7 @@ function Gladius:DumpAscensionClasses()
 	local function line(unit)
 		if not UnitExists(unit) then return end
 		local loc, token = UnitClass(unit)
-		local resolved = ResolveClassToken(token)
+		local resolved = self:ResolveClassToken(token)
 		local known = resolved and self.AscensionClasses and self.AscensionClasses[resolved]
 		print(string.format("|cff33ff99Gladius|r %s: %s / %s%s",
 			unit, tostring(loc), tostring(token),

@@ -76,7 +76,11 @@ function Gladius:OnInitialize()
          local spellName, _, texture = GetSpellInfo(k)
          if (spellName) then
             self.cooldownSpellIds[spellName] = k
-            self.spellTextures[k] = texture
+            if (self.NormalizeIconPath) then
+               self.spellTextures[k] = self:NormalizeIconPath(texture)
+            else
+               self.spellTextures[k] = texture
+            end
          end
       end
 	end
@@ -89,7 +93,11 @@ function Gladius:OnInitialize()
       local spellName, _, texture = GetSpellInfo(spellId)
       if (spellName) then
          self.drSpellIds[spellName] = spellType
-         self.drSpellTextures[spellName] = texture
+         if (self.NormalizeIconPath) then
+            self.drSpellTextures[spellName] = self:NormalizeIconPath(texture)
+         else
+            self.drSpellTextures[spellName] = texture
+         end
       end
 	end
 	self.drTime = { "50%", "25%", L["immune"] }
@@ -495,7 +503,13 @@ function Gladius:AuraGain(unit, name, icon, expirationTime, priority)
 	aura.name = name
 	aura.priority = priority
 	aura.timeLeft = (expirationTime - GetTime())
-	aura.icon:SetTexture(icon)
+	local path = icon
+	if (self.NormalizeIconPath) then
+		path = self:NormalizeIconPath(icon)
+	end
+	aura.icon:SetTexCoord(0, 1, 0, 1)
+	aura.icon:SetTexture(path)
+	aura.icon:SetAlpha(1)
 	aura.auraActive = true
 end
 
@@ -503,7 +517,10 @@ function Gladius:AuraFades(frame)
 	frame.name = nil
 	frame.priority = nil
 	frame.text:SetText("")
-	frame.icon:SetTexture("")
+	-- Empty SetTexture("") renders as a solid black square on Ascension and
+	-- covers the class icon underneath. Hide the overlay instead.
+	frame.icon:SetTexture(nil)
+	frame.icon:SetAlpha(0)
 	frame.auraActive = nil
 end
 
@@ -837,7 +854,12 @@ function Gladius:DRFades(unit, spellName)
          frame.type = spellType
          frame.timeLeft = DRTIME
          frame.cooldown:SetCooldown(GetTime(), DRTIME)
-         frame.texture:SetTexture(self.drSpellTextures[spellName])
+         local drTex = self.drSpellTextures and self.drSpellTextures[spellName]
+         if (self.NormalizeIconPath) then
+            drTex = self:NormalizeIconPath(drTex)
+         end
+         frame.texture:SetTexture(drTex)
+         frame.texture:SetTexCoord(0.1, 0.9, 0.1, 0.9)
          
          if (db.drText) then
             frame.text:SetText(self.drTime[button.diminishingReturn[spellType]])
@@ -915,23 +937,50 @@ function Gladius:COMBAT_LOG_EVENT_UNFILTERED(event, timestamp, eventType, source
 		local spellID, spellName = ...
 		if ( arenaGUID[destGUID] and ( spellID == 49010 or spellID == 49009 or spellID == 27069 or spellID == 24135 or spellID == 24134 or spellID == 24131 ) ) then
 			self.buttons[arenaGUID[destGUID]].wyvernDot = true	
-      elseif (arenaGUID[destGUID] and self.drSpellIds[spellName]) then
-         self:DRGain(arenaGUID[destGUID], self.drSpellIds[spellName])
+      elseif (arenaGUID[destGUID]) then
+         local spellType = (self.drSpellIds and self.drSpellIds[spellName])
+            or (self.drSpells and self.drSpells[spellID])
+         if (spellType) then
+            -- Keep name→type cache warm for DRFades texture lookup
+            if (spellName and self.drSpellIds and not self.drSpellIds[spellName]) then
+               self.drSpellIds[spellName] = spellType
+               if (self.drSpellTextures and not self.drSpellTextures[spellName]) then
+                  local tex = select(3, GetSpellInfo(spellID))
+                  if (self.NormalizeIconPath) then tex = self:NormalizeIconPath(tex) end
+                  self.drSpellTextures[spellName] = tex
+               end
+            end
+            self:DRGain(arenaGUID[destGUID], spellType)
+         end
 		end
 	
 	elseif (eventType == "SPELL_AURA_REMOVED" or eventType == "SPELL_PERIODIC_AURA_REMOVED" or eventType == "SPELL_AURA_REMOVED_DOSE" or eventType == "SPELL_PERIODIC_AURA_REMOVED_DOSE") then
 		local spellID, spellName = ...		
 		if ( arenaGUID[destGUID] and ( spellID == 49010 or spellID == 49009 or spellID == 27069 or spellID == 24135 or spellID == 24134 or spellID == 24131 ) ) then
 			self.buttons[arenaGUID[destGUID]].wyvernDot = false
-      elseif (arenaGUID[destGUID] and self.drSpellIds[spellName]) then
-         self:DRFades(arenaGUID[destGUID], spellName)
+      elseif (arenaGUID[destGUID]) then
+         local spellType = (self.drSpellIds and self.drSpellIds[spellName])
+            or (self.drSpells and self.drSpells[spellID])
+         if (spellType) then
+            if (spellName and self.drSpellIds and not self.drSpellIds[spellName]) then
+               self.drSpellIds[spellName] = spellType
+            end
+            self:DRFades(arenaGUID[destGUID], spellName or tostring(spellID))
+         end
 		end
    
    elseif (eventType == "SPELL_AURA_REFRESH") then
       local spellID, spellName = ...		
-      if (arenaGUID[destGUID] and self.drSpellIds[spellName]) then
-         self:DRFades(arenaGUID[destGUID], spellName)
-         self:DRGain(arenaGUID[destGUID], self.drSpellIds[spellName])
+      if (arenaGUID[destGUID]) then
+         local spellType = (self.drSpellIds and self.drSpellIds[spellName])
+            or (self.drSpells and self.drSpells[spellID])
+         if (spellType) then
+            if (spellName and self.drSpellIds and not self.drSpellIds[spellName]) then
+               self.drSpellIds[spellName] = spellType
+            end
+            self:DRFades(arenaGUID[destGUID], spellName or tostring(spellID))
+            self:DRGain(arenaGUID[destGUID], spellType)
+         end
       end
 	
 	elseif ( eventType == "SPELL_CAST_SUCCESS" ) then
@@ -974,8 +1023,11 @@ function Gladius:UNIT_SPELLCAST_SUCCEEDED(event, unit, spell, rank)
 		-- Spec detection for instant cast spells
 		self:DetectSpec(unit, self.specSpells[spell])
 		
-		-- Cooldown detection		
+		-- Cooldown detection
       local unitClass = select(2, UnitClass(unit))
+      if (self.ResolveClassToken) then
+         unitClass = self:ResolveClassToken(unitClass)
+      end
       local spellId = self.cooldownSpellIds[spell]
       if ( unitClass and self.cooldownSpells[unitClass] and self.cooldownSpells[unitClass][spellId] ) then
          self:CooldownUsed(unit, unitClass, spellId, spell)
@@ -1253,6 +1305,9 @@ function Gladius:UpdateUnit(unit)
 		arenaGUID[UnitGUID(unit)] = unit
 		local name, server = UnitName(unit)
 		local classLoc, class = UnitClass(unit)
+		if (self.ResolveClassToken) then
+			class = self:ResolveClassToken(class)
+		end
 		local raceLoc, race = UnitRace(unit)
 				
 		button.name = name
@@ -1354,7 +1409,12 @@ function Gladius:UpdateUnit(unit)
                      local icon = button.spellCooldownFrame["icon" .. button.lastCooldownSpell]
                      icon:Show()
                      icon.spellId = k
-                     icon.texture:SetTexture(self.spellTextures[k])
+                     local tex = self.spellTextures[k]
+                     if (self.NormalizeIconPath) then
+                        tex = self:NormalizeIconPath(tex)
+                     end
+                     icon.texture:SetTexture(tex or "Interface\\Icons\\INV_Misc_QuestionMark")
+                     icon.texture:SetTexCoord(0.1, 0.9, 0.1, 0.9)
                      
                      button.lastCooldownSpell = button.lastCooldownSpell + 1  
                   end          

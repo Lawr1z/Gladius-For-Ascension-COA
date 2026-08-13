@@ -1833,18 +1833,30 @@ function Gladius:SetupOptions()
 	
 	self.options.plugins.profiles = { profiles = LibStub("AceDBOptions-3.0"):GetOptionsTable(self.db) }
 	LibStub("AceConfig-3.0"):RegisterOptionsTable("Gladius", self.options)
-	local configDialog = LibStub("AceConfigDialog-3.0")
-	local optionsPanel = configDialog:AddToBlizOptions("Gladius", "Gladius")
-	if (optionsPanel and optionsPanel.HookScript) then
-		optionsPanel:HookScript("OnShow", function()
-			-- Ascension's modified Interface Options does not render old
-			-- AceConfig panels. Open the standalone AceConfig window instead.
-			if (InterfaceOptionsFrame and InterfaceOptionsFrame:IsShown()) then
-				InterfaceOptionsFrame:Hide()
-			end
-			configDialog:Open("Gladius")
-		end)
-	end
+
+	-- Ascension's Interface Options breaks if we Hide() it from an AceConfig
+	-- Bliz panel OnShow hook. Use a plain category + button instead.
+	local panel = CreateFrame("Frame", "GladiusBlizOptionsPanel")
+	panel.name = "Gladius"
+	panel:Hide()
+	local title = panel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
+	title:SetPoint("TOPLEFT", 16, -16)
+	title:SetText("Gladius")
+	local desc = panel:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
+	desc:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -8)
+	desc:SetWidth(500)
+	desc:SetJustifyH("LEFT")
+	desc:SetText("Ascension's Interface menu cannot embed AceConfig panels safely.\nOpen the standalone Gladius config window instead (also: /gladius ui).")
+	local btn = CreateFrame("Button", nil, panel, "UIPanelButtonTemplate")
+	btn:SetWidth(200)
+	btn:SetHeight(24)
+	btn:SetPoint("TOPLEFT", desc, "BOTTOMLEFT", 0, -16)
+	btn:SetText("Open Gladius Config")
+	btn:SetScript("OnClick", function()
+		Gladius:ShowOptions()
+	end)
+	InterfaceOptions_AddCategory(panel)
+
 	self:RegisterChatCommand("gladius", slashHandler)
 	
 end
@@ -1852,8 +1864,6 @@ end
 function Gladius:ShowOptions()
 	local configDialog = LibStub("AceConfigDialog-3.0", true)
 	if (not configDialog) then return end
-	if (InterfaceOptionsFrame and InterfaceOptionsFrame:IsShown()) then
-		InterfaceOptionsFrame:Hide()
-	end
+	-- Do NOT hide InterfaceOptionsFrame — that breaks Ascension's ESC menu.
 	configDialog:Open("Gladius")
 end

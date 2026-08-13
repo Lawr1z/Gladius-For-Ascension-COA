@@ -286,6 +286,7 @@ function Gladius:CreateButton(i)
     --The actual icon
     auraFrame.icon = auraFrame:CreateTexture(nil, "ARTWORK")
     auraFrame.icon:SetAllPoints(auraFrame)
+    auraFrame.icon:SetAlpha(0) -- Ascension: empty texture = black square over class icon
     
     --the text
 	auraFrame.text = auraFrame:CreateFontString(nil,"OVERLAY")
