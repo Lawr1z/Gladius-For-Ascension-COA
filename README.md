@@ -1,3 +1,9 @@
+HOW TO DOWNLOAD:
+1. Download ZIP
+2. Extract the folder inside the zip to \Interface\Addons
+3. Rename the folder to "Gladius"
+
+
 **Gladius for Ascension — Conquest of Azeroth (Vol'jin) World Of Warcraft**
 
 Gladius adds enemy unit frames to arenas for easier targeting and focusing. It is highly configurable and you can disable most features of this addon.
